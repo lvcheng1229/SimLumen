@@ -80,6 +80,12 @@ struct SLumenConfig
 
 SLumenConfig GetLumenConfig();
 
+struct SBox
+{
+    Math::XMINT3 volume_min_pos;
+    Math::XMINT3 volume_max_pos;
+};
+
 
 
 

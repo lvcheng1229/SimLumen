@@ -190,9 +190,53 @@ void CreateDemoScene(std::vector<SLumenMeshInstance>& out_mesh_instances, Descri
 		CreateBoxMeshResource(
 			out_mesh_instances[current_mesh_idx++],
 			5, 64, 100,
-			-30, 32, -50 - 10 - 120, 
+			-30, 32, -50 - 10 - 120,
 			1.0, 1.0, 0.2);
 	}
+
+	{
+		TextureRef mesh_tex;
+		uint32_t mesh_tex_table_idx;
+		uint32_t mesh_sampler_table_idx;
+
+		//texture
+		{
+			const std::wstring original_file = L"Assets/erato-101.jpg";
+			CompileTextureOnDemand(original_file, 0);
+			std::wstring ddsFile = Utility::RemoveExtension(original_file) + L".dds";
+			mesh_tex = TextureManager::LoadDDSFromFile(ddsFile);
+
+			DescriptorHandle texture_handles = tex_heap.Alloc(1);
+			mesh_tex_table_idx = tex_heap.GetOffsetOfHandle(texture_handles);
+
+			D3D12_CPU_DESCRIPTOR_HANDLE SourceTextures[1];
+			SourceTextures[0] = mesh_tex.GetSRV();
+
+			g_Device->CopyDescriptors(1, &texture_handles, &DestCount, DestCount, SourceTextures, &SourceCount, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		}
+
+		SLumenMeshInstance& mesh_instance = out_mesh_instances[current_mesh_idx++];
+		CSimLumenMeshResouce& mesh_resource = mesh_instance.m_mesh_resource;
+		LoadObj(std::string("Assets/erato.obj"), &mesh_resource);
+
+		CreateBuffer(mesh_instance.m_vertex_pos_buffer, mesh_resource.m_positions.data(), mesh_resource.m_positions.size(), sizeof(DirectX::XMFLOAT3));
+		CreateBuffer(mesh_instance.m_vertex_norm_buffer, mesh_resource.m_normals.data(), mesh_resource.m_normals.size(), sizeof(DirectX::XMFLOAT3));
+		CreateBuffer(mesh_instance.m_vertex_uv_buffer, mesh_resource.m_uvs.data(), mesh_resource.m_uvs.size(), sizeof(DirectX::XMFLOAT2));
+		CreateBuffer(mesh_instance.m_index_buffer, mesh_resource.m_indices.data(), mesh_resource.m_indices.size(), sizeof(unsigned int));
+
+		mesh_instance.m_tex = mesh_tex;
+		mesh_instance.m_tex_table_idx = mesh_tex_table_idx;
+		mesh_instance.m_sampler_table_idx = cube_sampler_table_idx;
+
+		mesh_resource.m_VolumeData.m_VoxelSize = 0.5;
+		mesh_resource.m_local_to_world = Math::Matrix4(Math::AffineTransform(Vector3(-10, 0, -50)));
+
+		mesh_instance.m_LumenConstant.WorldMatrix = mesh_resource.m_local_to_world;
+		mesh_instance.m_LumenConstant.WorldIT = InverseTranspose(mesh_instance.m_LumenConstant.WorldMatrix.Get3x3());
+		mesh_instance.m_LumenConstant.ColorMulti = DirectX::XMFLOAT4(1.0, 1.0, 1.0, 1);
+	}
+
+
 
 
 	{
@@ -270,44 +314,4 @@ void CreateDemoScene(std::vector<SLumenMeshInstance>& out_mesh_instances, Descri
 	}
 
 
-	{
-		TextureRef mesh_tex;
-		uint32_t mesh_tex_table_idx;
-		uint32_t mesh_sampler_table_idx;
-
-		//texture
-		{
-			const std::wstring original_file = L"Assets/erato-101.jpg";
-			CompileTextureOnDemand(original_file, 0);
-			std::wstring ddsFile = Utility::RemoveExtension(original_file) + L".dds";
-			mesh_tex = TextureManager::LoadDDSFromFile(ddsFile);
-
-			DescriptorHandle texture_handles = tex_heap.Alloc(1);
-			mesh_tex_table_idx = tex_heap.GetOffsetOfHandle(texture_handles);
-
-			D3D12_CPU_DESCRIPTOR_HANDLE SourceTextures[1];
-			SourceTextures[0] = mesh_tex.GetSRV();
-
-			g_Device->CopyDescriptors(1, &texture_handles, &DestCount, DestCount, SourceTextures, &SourceCount, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		}
-
-		SLumenMeshInstance& mesh_instance = out_mesh_instances[current_mesh_idx++];
-		CSimLumenMeshResouce& mesh_resource = mesh_instance.m_mesh_resource;
-		LoadObj(std::string("Assets/erato.obj"),&mesh_resource);
-
-		CreateBuffer(mesh_instance.m_vertex_pos_buffer, mesh_resource.m_positions.data(), mesh_resource.m_positions.size(), sizeof(DirectX::XMFLOAT3));
-		CreateBuffer(mesh_instance.m_vertex_norm_buffer, mesh_resource.m_normals.data(), mesh_resource.m_normals.size(), sizeof(DirectX::XMFLOAT3));
-		CreateBuffer(mesh_instance.m_vertex_uv_buffer, mesh_resource.m_uvs.data(), mesh_resource.m_uvs.size(), sizeof(DirectX::XMFLOAT2));
-		CreateBuffer(mesh_instance.m_index_buffer, mesh_resource.m_indices.data(), mesh_resource.m_indices.size(), sizeof(unsigned int));
-
-		mesh_instance.m_tex = mesh_tex;
-		mesh_instance.m_tex_table_idx = mesh_tex_table_idx;
-		mesh_instance.m_sampler_table_idx = cube_sampler_table_idx;
-
-		mesh_resource.m_local_to_world = Math::Matrix4(Math::AffineTransform(Vector3(-10, 0, -50)));
-
-		mesh_instance.m_LumenConstant.WorldMatrix = mesh_resource.m_local_to_world;
-		mesh_instance.m_LumenConstant.WorldIT = InverseTranspose(mesh_instance.m_LumenConstant.WorldMatrix.Get3x3());
-		mesh_instance.m_LumenConstant.ColorMulti = DirectX::XMFLOAT4(1.0, 1.0, 1.0, 1);
-	}
 }

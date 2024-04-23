@@ -12,6 +12,7 @@
 #include <memory>
 #include "SimLumenRuntime/SimLumenMeshInstance.h"
 #include "SimLumenCommon/ShaderCompile.h"
+#include "SimLumenMeshBuilder/SimLumenMeshBuilder.h"
 
 using namespace GameCore;
 using namespace Graphics;
@@ -41,6 +42,8 @@ private:
     RootSignature m_BasePassRootSig;
     CShaderCompiler m_ShaderCompiler;
     GraphicsPSO m_BasePassPSO;
+
+    CSimLumenMeshBuilder m_MeshBuilder;
 
     std::vector<SLumenMeshInstance> mesh_instances;
 };
@@ -101,6 +104,13 @@ void SimLumen::Startup( void )
     }
 
     CreateDemoScene(mesh_instances, s_TextureHeap, s_SamplerHeap);
+
+    m_MeshBuilder.Init();
+    for (int mesh_idx = 0; mesh_idx < mesh_instances.size(); mesh_idx++)
+    {
+        m_MeshBuilder.BuildMesh(mesh_instances[mesh_idx].m_mesh_resource);
+    }
+    m_MeshBuilder.Destroy();
 
     m_Camera.SetEyeAtUp(Vector3(0, 5, 5), Vector3(kZero), Vector3(kYUnitVector));
     m_Camera.SetZRange(1.0f, 10000.0f);

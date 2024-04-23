@@ -12,6 +12,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{06dcf987-d5c3-489b-aa0a-88d547a323d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Embree">
+      <UniqueIdentifier>{23017915-9098-451e-a84c-f2bebfd848f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MeshBuilder">
+      <UniqueIdentifier>{5a51e7d0-ce0c-40ce-9d9e-3ec63568eaa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,8 +33,14 @@
     <ClCompile Include="SimLumenCommon\ShaderCompile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimLumenMeshBuilder\SimLumenObjLoader.cpp">
+    <ClCompile Include="SimLumenCommon\SimLumenCommon.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenMeshBuilder\SimLumenObjLoader.cpp">
+      <Filter>Source Files\MeshBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenMeshBuilder\SimLumenMeshBuilder.cpp">
+      <Filter>Source Files\MeshBuilder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,11 +57,44 @@
     <ClInclude Include="SimLumenCommon\ShaderCompile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_buffer.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_builder.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_common.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_config.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_device.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_geometry.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_quaternion.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_ray.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
+    <ClInclude Include="embree\include\embree4\rtcore_scene.h">
+      <Filter>Source Files\Embree</Filter>
+    </ClInclude>
     <ClInclude Include="SimLumenMeshBuilder\SimLumenObjLoader.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MeshBuilder</Filter>
     </ClInclude>
     <ClInclude Include="SimLumenMeshBuilder\tiny_obj_loader.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MeshBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenMeshBuilder\SimLumenMeshBuilder.h">
+      <Filter>Source Files\MeshBuilder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -74,5 +119,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="embree\include\embree4\rtcore.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_buffer.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_common.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_device.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_geometry.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_quaternion.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_ray.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
+    <None Include="embree\include\embree4\rtcore_scene.isph">
+      <Filter>Source Files\Embree</Filter>
+    </None>
   </ItemGroup>
 </Project>
