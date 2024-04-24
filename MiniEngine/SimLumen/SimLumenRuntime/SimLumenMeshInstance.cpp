@@ -228,7 +228,7 @@ void CreateDemoScene(std::vector<SLumenMeshInstance>& out_mesh_instances, Descri
 		mesh_instance.m_tex_table_idx = mesh_tex_table_idx;
 		mesh_instance.m_sampler_table_idx = cube_sampler_table_idx;
 
-		mesh_resource.m_VolumeData.m_VoxelSize = 0.5;
+		mesh_resource.m_volume_df_data.m_VoxelSize = 0.5;
 		mesh_resource.m_local_to_world = Math::Matrix4(Math::AffineTransform(Vector3(-10, 0, -50)));
 
 		mesh_instance.m_LumenConstant.WorldMatrix = mesh_resource.m_local_to_world;

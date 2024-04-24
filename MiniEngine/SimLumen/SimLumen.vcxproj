@@ -71,7 +71,11 @@
     <ClInclude Include="SimLumenMeshBuilder\SimLumenMeshBuilder.h" />
     <ClInclude Include="SimLumenMeshBuilder\SimLumenObjLoader.h" />
     <ClInclude Include="SimLumenMeshBuilder\tiny_obj_loader.h" />
+    <ClInclude Include="SimLumenRuntime\Shadow.h" />
+    <ClInclude Include="SimLumenRuntime\SimLumenCardCapture.h" />
     <ClInclude Include="SimLumenRuntime\SimLumenMeshInstance.h" />
+    <ClInclude Include="SimLumenRuntime\SimLumenRender.h" />
+    <ClInclude Include="SimLumenRuntime\SimLumenRuntimeCommon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -83,7 +87,11 @@
     <ClCompile Include="SimLumenCommon\SimLumenCommon.cpp" />
     <ClCompile Include="SimLumenMeshBuilder\SimLumenMeshBuilder.cpp" />
     <ClCompile Include="SimLumenMeshBuilder\SimLumenObjLoader.cpp" />
+    <ClCompile Include="SimLumenRuntime\Shadow.cpp" />
+    <ClCompile Include="SimLumenRuntime\SimLumenCardCapture.cpp" />
     <ClCompile Include="SimLumenRuntime\SimLumenMeshInstance.cpp" />
+    <ClCompile Include="SimLumenRuntime\SimLumenRender.cpp" />
+    <ClCompile Include="SimLumenRuntime\SimLumenRuntimeCommon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../Core/Core.vcxproj">

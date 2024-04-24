@@ -31,6 +31,15 @@ namespace Graphics
     extern ColorBuffer g_VelocityBuffer;    // R10G10B10  (3D velocity)
     extern ShadowBuffer g_ShadowBuffer;
 
+    //SimLumen:BEGIN
+    extern ColorBuffer g_atlas_albedo;
+    extern ColorBuffer g_atlas_normal;
+    extern ColorBuffer g_atlas_depth;
+    extern ColorBuffer g_surface_cache_direct;
+    extern ColorBuffer g_surface_cache_indirect;
+    extern ColorBuffer g_surface_cache_final;
+    //SimLumen:END
+
     extern ColorBuffer g_SSAOFullScreen;	// R8_UNORM
     extern ColorBuffer g_LinearDepth[2];	// Normalized planar distance (0 at eye, 1 at far plane) computed from the SceneDepthBuffer
     extern ColorBuffer g_MinMaxDepth8;		// Min and max depth values of 8x8 tiles

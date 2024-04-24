@@ -18,45 +18,51 @@
     <Filter Include="Source Files\MeshBuilder">
       <UniqueIdentifier>{5a51e7d0-ce0c-40ce-9d9e-3ec63568eaa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Runtime">
+      <UniqueIdentifier>{37ff0cfd-f2e2-479a-9340-578f2965f063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{1a99a93b-5d18-410e-92bb-1549ea35e2d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="SimLumenCommon\MeshResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimLumenRuntime\SimLumenMeshInstance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimLumenCommon\ShaderCompile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimLumenCommon\SimLumenCommon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SimLumenMeshBuilder\SimLumenObjLoader.cpp">
       <Filter>Source Files\MeshBuilder</Filter>
     </ClCompile>
     <ClCompile Include="SimLumenMeshBuilder\SimLumenMeshBuilder.cpp">
       <Filter>Source Files\MeshBuilder</Filter>
     </ClCompile>
+    <ClCompile Include="SimLumenRuntime\SimLumenMeshInstance.cpp">
+      <Filter>Source Files\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenRuntime\Shadow.cpp">
+      <Filter>Source Files\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenRuntime\SimLumenCardCapture.cpp">
+      <Filter>Source Files\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenRuntime\SimLumenRuntimeCommon.cpp">
+      <Filter>Source Files\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenRuntime\SimLumenRender.cpp">
+      <Filter>Source Files\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenCommon\MeshResource.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenCommon\ShaderCompile.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SimLumenCommon\SimLumenCommon.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="SimLumenCommon\MeshResource.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimLumenCommon\SimLumenCommon.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimLumenRuntime\SimLumenMeshInstance.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimLumenCommon\ShaderCompile.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="embree\include\embree4\rtcore.h">
       <Filter>Source Files\Embree</Filter>
     </ClInclude>
@@ -95,6 +101,30 @@
     </ClInclude>
     <ClInclude Include="SimLumenMeshBuilder\SimLumenMeshBuilder.h">
       <Filter>Source Files\MeshBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenRuntime\SimLumenMeshInstance.h">
+      <Filter>Source Files\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenRuntime\Shadow.h">
+      <Filter>Source Files\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenRuntime\SimLumenCardCapture.h">
+      <Filter>Source Files\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenRuntime\SimLumenRuntimeCommon.h">
+      <Filter>Source Files\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenRuntime\SimLumenRender.h">
+      <Filter>Source Files\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenCommon\MeshResource.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenCommon\ShaderCompile.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SimLumenCommon\SimLumenCommon.h">
+      <Filter>Source Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

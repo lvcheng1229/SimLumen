@@ -24,12 +24,13 @@ void DepthBuffer::Create( const std::wstring& Name, uint32_t Width, uint32_t Hei
     Create(Name, Width, Height, 1, Format, VidMemPtr);
 }
 
-void DepthBuffer::Create( const std::wstring& Name, uint32_t Width, uint32_t Height, uint32_t Samples, DXGI_FORMAT Format, D3D12_GPU_VIRTUAL_ADDRESS VidMemPtr )
+void DepthBuffer::Create(const std::wstring& Name, uint32_t Width, uint32_t Height, uint32_t Samples, DXGI_FORMAT Format, float DepthClearValue, D3D12_GPU_VIRTUAL_ADDRESS VidMemPtr)
 {
     D3D12_RESOURCE_DESC ResourceDesc = DescribeTex2D(Width, Height, 1, 1, Format, D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL);
     ResourceDesc.SampleDesc.Count = Samples;
 
     D3D12_CLEAR_VALUE ClearValue = {};
+    ClearValue.DepthStencil.Depth = DepthClearValue;
     ClearValue.Format = Format;
     CreateTextureResource(Graphics::g_Device, Name, ResourceDesc, ClearValue, VidMemPtr);
     CreateDerivedViews(Graphics::g_Device, Format);

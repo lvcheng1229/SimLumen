@@ -76,6 +76,8 @@ inline std::string ConvertBlobToString(BlotType* pBlob)
 struct SLumenConfig
 {
     Math::Vector3 m_LightDirection;
+    Math::XMINT2 m_atlas_size;
+    Math::XMINT2 m_atlas_num_xy;
 };
 
 SLumenConfig GetLumenConfig();
@@ -86,6 +88,16 @@ struct SBox
     Math::XMINT3 volume_max_pos;
 };
 
+
+inline float GetFloatComponent(XMFLOAT3 src, int dim)
+{
+    return ((float*)(&src))[dim];
+}
+
+inline void AddFloatComponent(XMFLOAT3& src, int dim, float value)
+{
+    ((float*)(&src))[dim] += value;
+}
 
 
 

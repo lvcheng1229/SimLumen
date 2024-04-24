@@ -1,3 +1,4 @@
+#pragma once
 #include "../SimLumenCommon/SimLumenCommon.h"
 #include "../SimLumenCommon/MeshResource.h"
 

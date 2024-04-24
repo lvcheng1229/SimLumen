@@ -30,6 +30,15 @@ namespace Graphics
 
     ShadowBuffer g_ShadowBuffer;
 
+    //SimLumen:BEGIN
+    ColorBuffer g_atlas_albedo;
+    ColorBuffer g_atlas_normal;
+    ColorBuffer g_atlas_depth;
+    ColorBuffer g_surface_cache_direct;
+    ColorBuffer g_surface_cache_indirect;
+    ColorBuffer g_surface_cache_final;
+    //SimLumen:END
+
     ColorBuffer g_SSAOFullScreen(Color(1.0f, 1.0f, 1.0f));
     ColorBuffer g_LinearDepth[2];
     ColorBuffer g_MinMaxDepth8;
@@ -114,6 +123,13 @@ void Graphics::InitializeRenderingBuffers( uint32_t bufferWidth, uint32_t buffer
         g_SceneNormalBuffer.Create( L"Normals Buffer", bufferWidth, bufferHeight, 1, DXGI_FORMAT_R16G16B16A16_FLOAT, esram );
         g_VelocityBuffer.Create( L"Motion Vectors", bufferWidth, bufferHeight, 1, DXGI_FORMAT_R32_UINT );
         g_PostEffectsBuffer.Create( L"Post Effects Buffer", bufferWidth, bufferHeight, 1, DXGI_FORMAT_R32_UINT );
+
+        g_atlas_albedo.Create(L"g_atlas_albedo", 4096, 4096, 1, DXGI_FORMAT_R8G8B8A8_UNORM, esram);
+        g_atlas_normal.Create(L"g_atlas_normal", 4096, 4096, 1, DXGI_FORMAT_R8G8B8A8_UNORM, esram);
+        g_atlas_depth.Create(L"g_atlas_depth",4096,4096,1, DXGI_FORMAT_R32_FLOAT, esram);
+        g_surface_cache_direct.Create(L"g_surface_cache_direct", 4096, 4096, 1, DXGI_FORMAT_R16G16B16A16_FLOAT, esram);
+        g_surface_cache_indirect.Create(L"g_surface_cache_indirect", 4096, 4096, 1, DXGI_FORMAT_R8G8B8A8_UNORM, esram);
+        g_surface_cache_final.Create(L"g_surface_cache_final", 4096, 4096, 1, DXGI_FORMAT_R16G16B16A16_FLOAT, esram);
 
         esram.PushStack();	// Render HDR image
 

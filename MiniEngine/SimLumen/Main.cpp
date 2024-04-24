@@ -10,9 +10,11 @@
 #include "BufferManager.h"
 
 #include <memory>
-#include "SimLumenRuntime/SimLumenMeshInstance.h"
 #include "SimLumenCommon/ShaderCompile.h"
 #include "SimLumenMeshBuilder/SimLumenMeshBuilder.h"
+#include "SimLumenRuntime/SimLumenMeshInstance.h"
+#include "SimLumenRuntime/SimLumenCardCapture.h"
+#include "SimLumenRuntime/SimLumenRender.h"
 
 using namespace GameCore;
 using namespace Graphics;
@@ -44,7 +46,7 @@ private:
     GraphicsPSO m_BasePassPSO;
 
     CSimLumenMeshBuilder m_MeshBuilder;
-
+    CSimLuCardCapturer m_card_capturer;
     std::vector<SLumenMeshInstance> mesh_instances;
 };
 
@@ -116,7 +118,11 @@ void SimLumen::Startup( void )
     m_Camera.SetZRange(1.0f, 10000.0f);
     m_CameraController.reset(new FlyingFPSCamera(m_Camera, Vector3(kYUnitVector)));
 
+    SCardCaptureInitDesc card_capturer_init_desc;
+    card_capturer_init_desc.m_shader_compiler = &m_ShaderCompiler;
+    m_card_capturer.Init(card_capturer_init_desc);
 
+    GetGlobalRender()->Init();
 }
 
 namespace Graphics
@@ -143,6 +149,8 @@ void SimLumen::Update( float deltaT )
 
 void SimLumen::RenderScene( void )
 {
+    m_card_capturer.UpdateSceneCards(mesh_instances, &s_TextureHeap);
+
     GraphicsContext& gfxContext = GraphicsContext::Begin(L"Scene Render");
 
     SLumenViewGlobalConstant globals;
