@@ -17,7 +17,6 @@ StructuredBuffer<uint> cards_to_update_idx: register(t5);
 
 SamplerState g_point_sampler : register(s0);
 
-
 SSimLuSurfaceCacheData GetSurfaceCacheData_Normal(float2 atlas_texel_uv,SSimLuCard card_data)
 {
     SSimLuSurfaceCacheData surface_cache_data;
