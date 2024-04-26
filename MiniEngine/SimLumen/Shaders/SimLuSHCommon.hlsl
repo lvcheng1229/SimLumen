@@ -42,3 +42,20 @@ SThreeBandSH CalcDiffuseTransferSH3(half3 Normal,half Exponent)
 	Result.V2 *= L2;
 	return Result;
 }
+
+half DotSH3(SThreeBandSH A,SThreeBandSH B)
+{
+	half Result = dot(A.V0, B.V0);
+	Result += dot(A.V1, B.V1);
+	Result += A.V2 * B.V2;
+	return Result;
+}
+
+SThreeBandSH AddSH(SThreeBandSH A, SThreeBandSH B)
+{
+	SThreeBandSH Result = A;
+	Result.V0 += B.V0;
+	Result.V1 += B.V1;
+	Result.V2 += B.V2;
+	return Result;
+}

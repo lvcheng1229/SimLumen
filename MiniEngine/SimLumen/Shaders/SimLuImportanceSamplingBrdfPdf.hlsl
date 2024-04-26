@@ -8,6 +8,7 @@ cbuffer SLumImportanceSamplingConstant : register(b0)
     uint2 screen_probe_size_xy;
     float2 gbuffer_size_and_inv;
     float screen_probe_down_sample_factor;
+	float screen_probe_oct_resolution;
 };
 
 
@@ -75,7 +76,7 @@ void BRDFPdfCS(uint3 group_idx : SV_GroupID, uint3 group_thread_idx : SV_GroupTh
         float mat_depth = gbuffer_depth.Sample(g_point_sampler, thread_screen_uv).x;
         float3 mat_world_normal = gbuffer_B.Sample(g_point_sampler, thread_screen_uv).xyzs;
 
-        float pixel_world_pos = ;
+        float3 pixel_world_pos = ;
 
         float4 pixel_plane = float4(mat_world_normal,dot(mat_world_normal,pixel_world_pos));
         float3 probe_world_pos = ;
