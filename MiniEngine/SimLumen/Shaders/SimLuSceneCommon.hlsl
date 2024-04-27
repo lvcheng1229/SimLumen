@@ -1,3 +1,18 @@
+#define GLOBAL_SDF_SIZE_X 256
+#define GLOBAL_SDF_SIZE_Y 256
+#define GLOBAL_SDF_SIZE_Z 128
+
+#define SCENE_VOXEL_SIZE_X 256
+#define SCENE_VOXEL_SIZE_Y 256
+#define SCENE_VOXEL_SIZE_Z 128
+
+#define VOXEL_TEXTURE_SIZE_X (SCENE_VOXEL_SIZE_X * 16) //4096
+#define VOXEL_TEXTURE_SIZE_Y (SCENE_VOXEL_SIZE_Y *  8) //2048
+#define VOXEL_TEXTURE_SIZE_Z 6 //2048
+
+#define VOXEL_SLICE_SIZE_X (VOXEL_TEXTURE_SIZE_X / SCENE_VOXEL_SIZE_X) // 16
+#define VOXEL_SLICE_SIZE_Y (VOXEL_TEXTURE_SIZE_Y / SCENE_VOXEL_SIZE_Y) //  8
+
 struct SSimLuDirectionalLight
 {
     float3 SunDirection;
@@ -7,16 +22,21 @@ struct SSimLuDirectionalLight
 struct SSimLuMeshCard
 {
     uint card_start_index;
+
+    float3 world_origin;
+    float3x3 w2l_rotation;
 };
 
 struct SSimLuCard
 {
-    float3x3 mesh_card_l2w_rotation;
-    float3x3 l2w_rotation;
+    float3x3 meshcard_to_card_space_rotation;
+    float3 mesh_card_space_orgin;
+ 
+    uint2 atlas_card_index; // 0 -> 4096 / 128 (32)
 
-    uint2 atlas_card_index;
-    uint mesh_card_index;
-    uint card_dir_index;
+    // local space, not world space or mesh space
+    float2 card_extent_xy;
+    float card_extent_z;
 };
 
 struct SSimLuSurfaceCacheData
@@ -34,8 +54,13 @@ struct SMeshSDFInfo
     float4x4 volume_to_world;
     float4x4 world_to_volume;
 
-    float3 volume_position_center;
-    float3 volume_position_extent;
+    // unsed variable
+    // the center of the aabb, not the volume, aabb is smaller than volume
+    //float3 mesh_sdf_aabb_center; // volume space, equal to volume position center
+    //float3 mesh_sdf_aabb_extent;    // volume space
+
+    float3 volume_position_center; // volume space
+    float3 volume_position_extent; // volume space
 
     uint3 volume_brick_num_xyz;
 
@@ -43,12 +68,15 @@ struct SMeshSDFInfo
     uint volume_brick_start_idx;
 
     float2 sdf_distance_scale; // x : 2 * max distance , y : - max distance
+
+    uint mesh_card_index;
 };
 
 struct SDFTraceResult
 {
     bool bHit;
     uint hit_mesh_index;
+    uint hit_mesh_card_idx;
     float hit_distance;
 };
 

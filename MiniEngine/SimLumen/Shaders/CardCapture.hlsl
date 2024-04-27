@@ -34,7 +34,7 @@ VSOutput vs_main(VSInput vsInput, uint instanceID : SV_InstanceID)
 
     //vsOutput.worldPos = mul(WorldMatrix, position).xyz;
     vsOutput.worldPos = vsInput.position.xyz;
-    vsOutput.position = mul(ViewProjMatrix, float4(vsOutput.worldPos, 1.0));
+    vsOutput.position = mul(ViewProjMatrix, float4(vsOutput.worldPos, 1.0)); // todo:  we should use a fixed camera and rotate the mesh card
     vsOutput.normal = mul(WorldIT, normal);
     vsOutput.uv = vsInput.uv;
     return vsOutput;
@@ -55,7 +55,7 @@ PSOutput ps_main(VSOutput vsOutput)
     float2 tex_uv = vsOutput.uv;
     tex_uv.y = 1.0 - tex_uv.y;
 
-    float3 baseColor = baseColorTexture.Sample(baseColorSampler, tex_uv).xyz * color_multi.xyz;
+    float3 baseColor = baseColorTexture.Sample(baseColorSampler, tex_uv).xyz * color_multi.xyz; // todo:  we should use a fixed camera and rotate the mesh card
 
     PSOutput ps_out;
     ps_out.albedo = baseColor;

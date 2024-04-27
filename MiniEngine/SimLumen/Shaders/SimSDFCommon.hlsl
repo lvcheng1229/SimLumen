@@ -5,9 +5,14 @@ cbuffer CMeshSdfBrickTextureInfo : register(b0)
     uint2 texture_brick_num_xy;
     uint3 texture_size_xyz;
     uint scene_mesh_sdf_num;
+    float gloabl_sdf_voxel_size;
+
+    float3 gloabl_sdf_center;
+    float3 global_sdf_extents;
 };
 
 SamplerState g_sampler_point_3d : register(s0);
+StructuredBuffer<SMeshSDFInfo>scene_sdf_infos:register(t0);
 
 Texture3D<float> distance_field_brick_tex: register(t0);
 
@@ -162,6 +167,7 @@ void RayTraceSingleMeshSDF(float3 world_ray_start,float3 world_ray_direction,flo
             trace_result.bHit = true;   
             trace_result.hit_distance = sample_ray_t;
             trace_result.hit_mesh_index = object_index;
+            trace_result.hit_mesh_card_idx = mesh_sdf_info.mesh_card_index;
         }
     }
     
