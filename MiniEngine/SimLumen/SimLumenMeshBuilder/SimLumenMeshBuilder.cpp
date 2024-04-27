@@ -145,6 +145,8 @@ void CSimLumenMeshBuilder::BuildSDF(CSimLumenMeshResouce& mesh)
 	radius = Math::Sqrt(radius) * 0.8;
 	float max_distance = radius;
 
+	//todo:!!!!set volume center to (0,0,0)
+
 	for (int vol_idx_z = 0; vol_idx_z < volume_brick_num_z * g_brick_size; vol_idx_z++)
 	{
 		for (int vol_idx_y = 0; vol_idx_y < volume_brick_num_y * g_brick_size; vol_idx_y++)
