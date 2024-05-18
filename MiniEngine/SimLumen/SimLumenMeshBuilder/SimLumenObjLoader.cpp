@@ -22,10 +22,6 @@ bool LoadObj(const std::string& inputfile, CSimLumenMeshResouce* out_mesh_data)
         }
     }
 
-    //if (!reader.Warning().empty()) 
-    //{
-    //    return false;
-    //}
 
     auto& attrib = reader.GetAttrib();
     auto& shapes = reader.GetShapes();

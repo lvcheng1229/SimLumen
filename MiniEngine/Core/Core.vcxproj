@@ -104,6 +104,8 @@
     <ClInclude Include="Math\Scalar.h" />
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector.h" />
+    <ClInclude Include="Math\SimpleMath.h" />
+    <ClInclude Include="Math\SimpleMath.inl" />
     <ClInclude Include="MotionBlur.h" />
     <ClInclude Include="ParticleEffect.h" />
     <ClInclude Include="ParticleEffectManager.h" />
